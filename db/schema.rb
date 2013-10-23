@@ -12,4 +12,11 @@
 
 ActiveRecord::Schema.define(:version => 20130110054237) do
 
+  create_table "links", :force => true do |t|
+    t.string   "shortLink"
+    t.string   "realLink"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
 end

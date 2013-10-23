@@ -13,9 +13,10 @@
   $(function() {
     $('#myForm').submit(function() {
     $.post('/new', $("#myForm").serialize(), function(data){
+      console.log(data);
       var $url = $('<a>', {href: data}).append(data);
       var $shortcode = $('<div>').append("Your Code:").append($url);
-      $('#shortcode').append($shortcode.hide().fadeIn());
+      $('#shortcode').append($shortcode.hide().fadeIn('fast'));
       });
     return false;
     });

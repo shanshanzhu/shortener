@@ -11,6 +11,7 @@ group :development, :test do
   gem 'thin'
   gem 'shotgun'
   gem 'rack-test'
+  gem 'tux'
 end
 
 gem 'rake'

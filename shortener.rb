@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'active_record'
 require 'pry'
+require 'json'
 
 ###########################################################
 # Configuration
@@ -35,7 +36,7 @@ end
 ###########################################################
 
 get '/' do
-    @links = [] # FIXME
+    @links = Link.all # FIXME
     erb :index
 end
 
@@ -45,6 +46,16 @@ end
 
 post '/new' do
     # PUT CODE HERE TO CREATE NEW SHORTENED LINKS
+    userInput = params[:url]
+    rowData = Link.find_by_realLink(userInput)
+    if rowData
+      return shortenedLink = rowData.shortLink
+    else
+      shortenedLink = SecureRandom.urlsafe_base64
+      @newLink = Link.new(shortLink: shortenedLink, realLink: userInput)
+      @newLink.save
+      return shortenedLink
+    end
 end
 
 # MORE ROUTES GO HERE
